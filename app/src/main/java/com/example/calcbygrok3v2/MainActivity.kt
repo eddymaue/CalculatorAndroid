@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             btn7.setOnClickListener { viewModel.onButtonClick("7") }
             btn8.setOnClickListener { viewModel.onButtonClick("8") }
             btn9.setOnClickListener { viewModel.onButtonClick("9") }
-            btnDot.setOnClickListener { viewModel.onButtonClick(",") }
+            btnDot.setOnClickListener { viewModel.onButtonClick(".") }
             btnAdd.setOnClickListener { viewModel.onButtonClick("+") }
             btnSub.setOnClickListener { viewModel.onButtonClick("-") }
             btnMul.setOnClickListener { viewModel.onButtonClick("×") }
