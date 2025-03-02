@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Couleurs de base -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,4 +8,23 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Couleurs personnalisées pour la calculatrice -->
+    <color name="display_background">#F5F5F5</color>
+    <color name="display_text">#212121</color>
+
+    <color name="digit_button">#ECEFF1</color>
+    <color name="digit_text">#212121</color>
+
+    <color name="operator_button">#FFA000</color>
+    <color name="operator_text">#FFFFFF</color>
+
+    <color name="function_button">#9E9E9E</color>
+    <color name="function_text">#FFFFFF</color>
+
+    <color name="equals_button">#4CAF50</color>
+    <color name="equals_text">#FFFFFF</color>
+
+    <color name="clear_button">#F44336</color>
+    <color name="clear_text">#FFFFFF</color>
 </resources>

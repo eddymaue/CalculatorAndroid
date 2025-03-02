@@ -123,13 +123,28 @@ class CalculatorViewModel : ViewModel() {
 
     private fun applyPercentage() {
         try {
+            // Si nous sommes déjà en train d'évaluer une expression, calculons-la d'abord
+            if (currentInput.any { it in "+-×/(" }) {
+                evaluate()
+            }
+
+            // Maintenant, convertir le résultat en pourcentage
             val currentValue = currentInput.toString().toDoubleOrNull()
             if (currentValue != null) {
                 val result = currentValue / 100
-                currentInput = StringBuilder(result.toString())
+
+                // Formatage pour éviter les décimales inutiles
+                val formattedResult = if (result == result.toLong().toDouble()) {
+                    result.toLong().toString()
+                } else {
+                    result.toString()
+                }
+
+                currentInput = StringBuilder(formattedResult)
             }
         } catch (e: Exception) {
             currentInput = StringBuilder("Erreur")
+            Log.e("CalculatorViewModel", "Erreur lors du calcul du pourcentage: ${e.message}", e)
         }
     }
 
@@ -188,35 +203,42 @@ class CalculatorViewModel : ViewModel() {
                     result.add(expression.substring(start, i))
                     continue // i est déjà incrémenté
                 }
+                c == '-' && (i == 0 || (i > 0 && expression[i-1] == '(') ||
+                        (i > 0 && expression[i-1] in "+-×/")) -> {
+                    // C'est un nombre négatif (opérateur unaire), pas une soustraction
+                    result.add("-") // Ajouter le signe négatif comme token séparé
+                    i++
+                }
                 c == '(' || c == ')' || c == '+' || c == '-' || c == '×' || c == '/' -> {
-                    // Opérateurs unaires (comme -5)
-                    if (c == '-' && (i == 0 || expression[i-1] == '(' ||
-                                expression[i-1] in "+-×/")) {
-                        // C'est un nombre négatif, pas une soustraction
-                        var j = i + 1
-                        while (j < expression.length && (expression[j].isDigit() || expression[j] == '.')) {
-                            j++
-                        }
-                        result.add(expression.substring(i, j))
-                        i = j
-                        continue
-                    }
-
                     result.add(c.toString())
+                    i++
                 }
                 c == ' ' -> {
                     // Ignorer les espaces
+                    i++
                 }
                 else -> {
                     throw IllegalArgumentException("Caractère non reconnu: $c")
                 }
             }
-            i++
         }
 
-        return result
-    }
+        // Second passage pour combiner les signes négatifs avec les nombres
+        val finalResult = mutableListOf<String>()
+        var j = 0
+        while (j < result.size) {
+            if (result[j] == "-" && j + 1 < result.size && result[j + 1].toDoubleOrNull() != null) {
+                // Combinaison d'un signe négatif et d'un nombre
+                finalResult.add("-" + result[j + 1])
+                j += 2
+            } else {
+                finalResult.add(result[j])
+                j++
+            }
+        }
 
+        return finalResult
+    }
     private fun shuntingYard(tokens: List<String>): List<String> {
         val output = mutableListOf<String>()
         val operators = Stack<String>()

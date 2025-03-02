@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Style pour les boutons de chiffres -->
+    <style name="DigitButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/digit_button_background</item>
+        <item name="android:textColor">@color/digit_text</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:elevation">2dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <!-- Style pour les boutons d'opérateurs -->
+    <style name="OperatorButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/operator_button_background</item>
+        <item name="android:textColor">@color/operator_text</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:elevation">2dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <!-- Style pour les boutons de fonctions -->
+    <style name="FunctionButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/function_button_background</item>
+        <item name="android:textColor">@color/function_text</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:elevation">2dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <!-- Style pour le bouton égal -->
+    <style name="EqualsButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/equals_button_background</item>
+        <item name="android:textColor">@color/equals_text</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:elevation">2dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <!-- Style pour les boutons d'effacement -->
+    <style name="ClearButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/clear_button_background</item>
+        <item name="android:textColor">@color/clear_text</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:elevation">2dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+</resources>
